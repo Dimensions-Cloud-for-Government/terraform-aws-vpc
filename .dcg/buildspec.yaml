@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing Trivy..."
+      - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.58.2
+
+  build:
+    commands:
+      - echo "Running Trivy security scan..."
+      - trivy config --skip-dirs examples . 2>&1 | tee trivy_output.txt || true
