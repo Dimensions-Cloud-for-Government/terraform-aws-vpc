@@ -25,7 +25,7 @@ phases:
           trivy config --skip-dirs examples .
         elif [ "$BUILD_PHASE" = "deploy" ]; then
           echo "Uploading module to S3..."
-          zip terraform-module.zip . -x "./.git/*" "./.dcg/*" "./.github/*" "./examples/*" "./.terraform/*"
+          zip -r terraform-module.zip . -x "./.git/*" "./.dcg/*" "./.github/*" "./examples/*" "./.terraform/*"
           aws s3 cp terraform-module.zip s3://${S3_MODULE_BUCKET}/${MODULE_NAME}/${GIT_TAG}.zip --region ${AWS_REGION}
         else
           echo "Build phase invalid.. exiting"
