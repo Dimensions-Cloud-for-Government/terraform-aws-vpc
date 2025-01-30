@@ -4,13 +4,13 @@ phases:
   build:
     commands:
       - |
-        if [ "$BUILD_PHASE" == "scan" ]; then
+        if "$BUILD_PHASE" == "scan"; then
           echo "Installing Trivy..."
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.58.2
 
           echo "Running Trivy security scan..."
           trivy config --skip-dirs examples .
-        elif [ "$BUILD_PHASE" == "deploy" ]; then
+        elif "$BUILD_PHASE" == "deploy"; then
           echo "Uploading module to S3..."
           echo "${S3_MODULE_BUCKET}/${MODULE_NAME}/${CODEBUILD_RESOLVED_SOURCE_VERSION}"
           # aws s3 cp terraform-module.zip s3://${S3_MODULE_BUCKET}/${MODULE_NAME}/${CODEBUILD_RESOLVED_SOURCE_VERSION}.zip --region ${AWS_REGION}
