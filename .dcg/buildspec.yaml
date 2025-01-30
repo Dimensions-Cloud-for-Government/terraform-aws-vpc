@@ -14,7 +14,7 @@ phases:
           echo "Uploading module to S3..."
           echo "${S3_MODULE_BUCKET}/${MODULE_NAME}/${CODEBUILD_RESOLVED_SOURCE_VERSION}"
           # aws s3 cp terraform-module.zip s3://${S3_MODULE_BUCKET}/${MODULE_NAME}/${CODEBUILD_RESOLVED_SOURCE_VERSION}.zip --region ${AWS_REGION}
-        else;
+        else
           echo "Build phase invalid.. exiting"
           exit 1
         fi
