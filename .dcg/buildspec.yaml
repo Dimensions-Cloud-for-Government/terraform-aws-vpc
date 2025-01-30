@@ -4,7 +4,11 @@ phases:
   build:
     commands:
       - |
-        echo $CODEBUILD_WEBHOOK_TRIGGER
+        if echo "$CODEBUILD_RESOLVED_SOURCE_VERSION" | grep -Eq "^[a-f0-9]{40}$"; then
+          echo "Detected a commit hash: $CODEBUILD_RESOLVED_SOURCE_VERSION"
+        else
+          echo "Detected a Git tag: $CODEBUILD_RESOLVED_SOURCE_VERSION"
+        fi
 
         echo "TESTTESTTESTTESTTESTTESTTESTTESTTEST"
         if [ "$BUILD_PHASE" = "scan" ]; then
