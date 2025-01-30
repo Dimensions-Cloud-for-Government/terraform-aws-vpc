@@ -6,6 +6,8 @@ phases:
       - |
         echo $GIT_TAG
 
+        git checkout $GIT_TAG
+
         echo "TESTTESTTESTTESTTESTTESTTESTTESTTEST"
 
         git checkout $GIT_TAG
