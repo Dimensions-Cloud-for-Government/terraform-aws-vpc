@@ -4,7 +4,7 @@ phases:
   build:
     commands:
       - |
-        echo $CODEBUILD_INITIATOR
+        echo $CODEBUILD_WEBHOOK_TRIGGER
 
         echo "TESTTESTTESTTESTTESTTESTTESTTESTTEST"
         if [ "$BUILD_PHASE" = "scan" ]; then
