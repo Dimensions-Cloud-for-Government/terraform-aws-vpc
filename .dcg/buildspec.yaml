@@ -6,9 +6,9 @@ phases:
       - |
         echo "Resolving git tag..."
         if [ "$GIT_TAG" = "None" ]; then
-          TAG=$(git describe --tags --exact-match "$CODEBUILD_RESOLVED_SOURCE_VERSION" 2>/dev/null)
-          if [ -n "$TAG" ]; then
-            git checkout "$TAG"
+          GIT_TAG=$(git describe --tags --exact-match "$CODEBUILD_RESOLVED_SOURCE_VERSION" 2>/dev/null)
+          if [ -n "$GIT_TAG" ]; then
+            git checkout "$GIT_TAG"
           else
             echo "No matching tag found for $CODEBUILD_RESOLVED_SOURCE_VERSION"
             exit 1
