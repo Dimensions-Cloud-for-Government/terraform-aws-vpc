@@ -4,6 +4,9 @@ phases:
   build:
     commands:
       - |
+        echo $CODEBUILD_INITIATOR
+
+        echo "TESTTESTTESTTESTTESTTESTTESTTESTTEST"
         if [ "$BUILD_PHASE" = "scan" ]; then
           echo "Installing Trivy..."
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.58.2
